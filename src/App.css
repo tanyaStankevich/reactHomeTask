@@ -1,17 +1,26 @@
-*{
+* {
   margin: 0px;
   padding: 0px;
 }
 
-.message{
-font-size: 24px;
-color: blue;
+.message {
+  font-size: 24px;
+  color: blue;
 }
 
-.app{
+.app {
   font-size: 36px;
   color: aqua;
   border: 1px solid black;
   padding: 5px;
   margin: 5px;
+}
+
+.frag {
+  display: flex;
+  justify-content: space-around;
+}
+.listitem {
+  border: 1px solid black;
+  width: 50%;
 }
