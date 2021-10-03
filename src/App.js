@@ -1,11 +1,13 @@
 import './App.css';
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import Message from './Message.js';
-import MessageChat from './MessageChat';
-import ListChat from './ListChat';
 
-const messageText = 'Have a nice chat';
+
+import Router from './routes/Routes';
+import Header from './components/Header';
+import { BrowserRouter } from 'react-router-dom';
+
+
 
 
 //const messageChat = [];
@@ -13,8 +15,7 @@ const messageText = 'Have a nice chat';
 
 export default function App() {
   
-  const author = '';
-  const messageAuthor = '';
+  
   
 
 
@@ -23,14 +24,11 @@ export default function App() {
     
  
   return (
-   <div className='frag'>
-   <ListChat />
-      <div>
-      <h3 className='app'>Welcome to myMessanger</h3>
-      <Message mes={messageText} />
-      <MessageChat author={author} messageAuthor={messageAuthor} />
-    </div>
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Router />
+    
+      </BrowserRouter>
   );
 
 }

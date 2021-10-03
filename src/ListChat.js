@@ -6,31 +6,15 @@ import Button from '@material-ui/core/Button';
 
 import { TextField } from "@material-ui/core";
 
-import { nanoid } from 'nanoid';
+
 import { List } from "@material-ui/core";
 import { ListItem } from "@material-ui/core";
 import { ListItemText } from "@material-ui/core";
+import { arrChat } from './NameChat'
 
 export default function ListChat() {
   
-    const arrChat =
-    [{
-      id: nanoid(),
-      name: 'Татьяна'
-      
-        },
-        {
-      id: nanoid(),
-      name: 'Николай'
-      
-        },
-        {
-      id: nanoid(),
-      name: 'Артем'
-      
-        }
-        
-        ];
+    
    
 
     

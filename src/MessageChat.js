@@ -83,7 +83,7 @@ export default class MessageChat extends React.Component{
       
      
       <div>
-      <h3 className='app'>Welcome to myMessanger</h3>
+      
       <form >
       <p>Input your name</p>
       <TextField focused='true' id="outlined-basic" label="Your name" size="small" style={{ margin: '20px' }} variant="outlined" value={this.state.author} onChange={this.updatePolAut}/>
