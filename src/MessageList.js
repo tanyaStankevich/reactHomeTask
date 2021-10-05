@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
-
+import { arrChat } from './NameChat';
 import Button from '@material-ui/core/Button';
 import { nanoid } from 'nanoid';
 import MessageChat from './MessageChat';
-
+import { Router, Link, useParams, Redirect, useRouteMatch } from "react-router-dom";
 import {
 ThemeProvider,
 useTheme,
 createMuiTheme,
 } from "@material-ui/core/styles";
+
 // import { nanoid } from 'nanoid';
 
 
@@ -26,7 +27,10 @@ main: "#0098FF",
 
 const arr = [];
 
+
 export default class MessageList extends React.Component{
+ 
+  
   constructor(props) {
     super(props);
     
@@ -37,7 +41,8 @@ export default class MessageList extends React.Component{
         
     }];
      
-  }
+  };
+  
   update = (event) => {
     
     event.preventDefault();

@@ -1,22 +1,26 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
+
+
 export const arrChat =
     [{
       id: nanoid(),
-      name: 'Татьяна'
+      name: 'Tatyana',
+      messageListChat:'Tatyana'
+        },
+        {
+      id: nanoid(),
+          name: 'Nikolay',
+      messageListChat:'Nikolay'
       
         },
         {
       id: nanoid(),
-      name: 'Николай'
-      
-        },
-        {
-      id: nanoid(),
-      name: 'Артем'
+          name: 'Артем',
+      messageListChat:'Артем'
       
         }
         
-    ];
+    ]
         
     

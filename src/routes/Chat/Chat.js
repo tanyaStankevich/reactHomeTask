@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, Link } from "react-router";
+
 import ListChat from '../../ListChat';
 import Message from '../../Message.js';
 import MessageChat from '../../MessageChat';
@@ -9,6 +9,7 @@ const messageText = 'Have a nice chat';
 export default function Chat () {
    const author = '';
   const messageAuthor = '';
+  const arrChatArr=[]
     return (
         <div className='frag'>
       
@@ -19,14 +20,7 @@ export default function Chat () {
                   <h3 className='app'>Welcome to myMessanger</h3>
       <MessageChat author={author} messageAuthor={messageAuthor} />
         </div>
-        {/* <Link to={/chat/${arrChat.id}}>
         
-        </Link>
-        
-        
-        <Router>
-
-        </Router> */}
       </div>
       
     )
