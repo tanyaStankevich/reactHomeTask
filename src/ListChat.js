@@ -1,5 +1,5 @@
 import './App.css';
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import ReactDOM from 'react-dom';
 import Message from './Message.js';
 import Button from '@material-ui/core/Button';
@@ -14,6 +14,7 @@ import Chat from './routes/Chat/Chat';
 import MessageList from './MessageList';
 
 export default function ListChat(props) {
+  const { count, setCount } = useState();
   const { arrChatName } = useParams();
     
   const chat = arrChat.find(({ name }) => name === arrChatName);
