@@ -1,18 +1,38 @@
 import './App.css';
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import Message from './Message.js';
+
+import Router from './routes/Routes';
+import Header from './components/Header';
+import { BrowserRouter } from 'react-router-dom';
+
+import { store } from './store';
 
 
-const messageText='It is my first react app';
 
-function App (){
+//const messageChat = [];
+
+
+export default function App() {
+  
+  
+  
+
+
+  
+  
+    
+ 
   return (
-      <div>
-          <h3 className='app'>Hello!</h3>
-          <Message mes={messageText} />
-      </div>
+    
+    <BrowserRouter>
+      <Header />
+      <Router />
+      
+      </BrowserRouter>
+    
   );
+
 }
 
-export default App;
+
