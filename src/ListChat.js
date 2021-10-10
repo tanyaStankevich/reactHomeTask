@@ -1,17 +1,11 @@
 import './App.css';
-import React, {Component, useState} from 'react';
-import ReactDOM from 'react-dom';
-import Message from './Message.js';
-import Button from '@material-ui/core/Button';
-import { Router, Link, useParams, Redirect, useRouteMatch } from "react-router-dom";
-import { TextField } from "@material-ui/core";
-
+import React, {useState} from 'react';
+import {  Link, useParams} from "react-router-dom";
 import { List } from "@material-ui/core";
 import { ListItem } from "@material-ui/core";
 import { ListItemText } from "@material-ui/core"; 
 import { arrChat }  from './NameChat'
-import Chat from './routes/Chat/Chat';
-import MessageList from './MessageList';
+
 
 export default function ListChat(props) {
   const { count, setCount } = useState();

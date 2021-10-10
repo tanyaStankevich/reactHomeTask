@@ -1,30 +1,41 @@
-import React from "react";
-
-import { useCallback} from "react";
+import React, { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { store } from "../../store/index";
-import { ProfileReducer, initialState } from "../../store/profile/reducer";
-import { profileAction } from '../../store/profile/actions'
+// import { store } from "../../store/index";
+import { changeName } from '../../store/profile/actions'
 
 export default function Profile() {
- 
+  
+  
   const action = useSelector((state) => {
     return state;
   });
+  
 
   const dispatch = useDispatch();
+  const [value, setValue] = useState('');
+ 
+ 
+  const handleChange = useCallback((e) => {
+     
+    setValue(e.target.value);
+    
+  }, []);
+  
 
-  const setShowName = useCallback(() =>
-    dispatch(profileAction),
+  const setNameProfile = useCallback(() => {
+    dispatch(changeName(value))
+  }, [dispatch, value],
   
-    [dispatch])
-  
+);
+
+
   return (
     <div>
       <h1>Profile</h1>
-      <input type='checkbox' checked={action.show} value={action.show} onChange={setShowName} />
 
-      {action.show && <p>{action.nameChat}</p>}
+      <input type='text'  value={value} onChange={handleChange} />
+      <button  onClick={setNameProfile}>Создать профиль</button>
+      
     </div>
   )
   }
