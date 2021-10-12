@@ -11,7 +11,7 @@ export const messageAdd = (chatId, message) => ({
   type: MESSAGE_ADD,
   payload: {
     chatId,
-  message, 
+    message, 
   }
  
 })

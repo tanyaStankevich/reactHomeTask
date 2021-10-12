@@ -3,7 +3,9 @@ export const CHAT_REMOVE = "CHATS::CHAT_REMOVE";
 
 export const chatAdd =(nameChat)=> ({
   type: CHAT_ADD,
-    payload: nameChat
+  payload: 
+    nameChat,
+  
 })
 
 export const chatRemove =(chatId)=>( {

@@ -1,32 +1,29 @@
 import React from "react";
 import { useCallback, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { CHAT_ADD, CHAT_REMOVE } from "../../store/chat/actionsChat.js";
-import { MESSAGE_ADD } from "../../store/messages/actionsMessage.js";
-// import ListChat from '../../ListChat';
+import { useDispatch } from "react-redux";
 import Message from '../../Message.js';
-import { getChatById } from "../../store/chat/selectorChat.js";
-
-// import MessageChat from '../../MessageChat';
-// import { arrChat } from './NameChat'
+import { getChat } from "../../store/chat/selectorChat.js";
+import { store } from "../../store/index.js";
+import { getMessages } from "../../store/messages/selectorMessage.js";
+import { nanoid } from 'nanoid';
 
 const messageText = 'Have a nice chat';
 
 
 export default function Chat () {
-  //  const author = '';
-  // const messageAuthor = '';
-  // const arrChatArr=[]
 
-  const action = useSelector((state) => {
-      return state;
-  });
-  
+  // const action = useSelector((state) => {
+  //     return state;
+  // });
+ 
   const dispatch = useDispatch();
-
+  const [chatId, setChatId] = useState;
   const [author, setAuthor] = useState('');
   const [message, setMessage] = useState('');
   const [nameChat, setNameChat] = useState('');
+
+  const chats = getChat(store);
+  const messages = getMessages(store);
 
   const handleChangeAuthor = useCallback((e) => {
       setAuthor(e.target.value);
@@ -37,25 +34,27 @@ export default function Chat () {
   }, []);
 
   const handleChangeNameChat = useCallback((e) => {
-      setNameChat(e.target.value);
+    setNameChat(e.target.value);
+    setChatId(nanoid(4))
   }, []);
 
 
-  const chatAdd = useCallback(() => {
+  const chatAdd = useCallback((nameChat) => {
+    
     dispatch(chatAdd(nameChat))
   }, [dispatch, nameChat],
   
   );
 
   const chatRemove = useCallback(() => {
-    dispatch(chatRemove(getChatById (chatId)))
+    dispatch(chatRemove(chatId))
   }, [dispatch, chatId],
   
   );
   
    const messageAdd = useCallback(() => {
-    dispatch(messageAdd(message.message, message.author))
-  }, [dispatch, message],
+    dispatch(messageAdd(message, author))
+  }, [dispatch, message, author],
   
 );
 
@@ -69,14 +68,14 @@ export default function Chat () {
         <h3 className='app'>Welcome to myMessanger</h3>
 
         <div className='listChat'>
-          <input type='text' value='nameChat' onChange={ handleChangeNameChat }/>
-            <button onClick={chatAdd}>Add chat</button>
+          <input type='text' key={chatId} value={nameChat} onChange={ handleChangeNameChat }/>
+            <button  onClick={chatAdd} >Add chat</button>
             <button onClick={chatRemove}>Remove chat</button>
         </div>
 
         <div className='listMessage'>
-          <input type='text' value={ message.author} onChange={ handleChangeAuthor }/>
-          <input type='text' value={message.message} onChange={handleChangeMessage}/>
+          <input type='text' value={author} onChange={ handleChangeAuthor }/>
+          <input type='text' value={message} onChange={handleChangeMessage}/>
             <button onClick={messageAdd}>Send</button>
             
         </div>

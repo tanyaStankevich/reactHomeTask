@@ -9,11 +9,13 @@ export const initialStateChat = {
 export const ChatReducer = (state = initialStateChat, action) => {
     switch (action.type) {
         case CHAT_ADD: {
+            // const { chatId, nameChat } = action.payload;
             return {
                                
                 chatList: [...state.chatList,
-                    action.payload,
-                ]
+                    
+                        action.payload,
+                    ]
                
             }
  
