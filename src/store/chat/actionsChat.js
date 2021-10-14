@@ -12,3 +12,4 @@ export const chatRemove =(chatId)=>( {
   type: CHAT_REMOVE,
   payload: chatId
 })
+

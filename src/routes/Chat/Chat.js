@@ -10,20 +10,24 @@ import { nanoid } from 'nanoid';
 const messageText = 'Have a nice chat';
 
 
-export default function Chat () {
+export default function Chat (props) {
 
   // const action = useSelector((state) => {
   //     return state;
   // });
  
   const dispatch = useDispatch();
-  const [chatId, setChatId] = useState;
+  const [chatId, setChatId] = useState('');
   const [author, setAuthor] = useState('');
   const [message, setMessage] = useState('');
   const [nameChat, setNameChat] = useState('');
 
-  const chats = getChat(store);
-  const messages = getMessages(store);
+  const resetAuthor = () => setAuthor('');
+  const resetMessage = () => setMessage('');
+  const resetNameChat = () => setNameChat('');
+  
+  const chats = getChat;
+  const messages = getMessages;
 
   const handleChangeAuthor = useCallback((e) => {
       setAuthor(e.target.value);
@@ -35,7 +39,7 @@ export default function Chat () {
 
   const handleChangeNameChat = useCallback((e) => {
     setNameChat(e.target.value);
-    setChatId(nanoid(4))
+    
   }, []);
 
 
@@ -43,7 +47,7 @@ export default function Chat () {
     
     dispatch(chatAdd(nameChat))
   }, [dispatch, nameChat],
-  
+     resetNameChat()
   );
 
   const chatRemove = useCallback(() => {
@@ -55,8 +59,21 @@ export default function Chat () {
    const messageAdd = useCallback(() => {
     dispatch(messageAdd(message, author))
   }, [dispatch, message, author],
+  resetAuthor(), resetMessage(),
+  );
   
-);
+  const addMessageWithThunk = (chatID, message) => (dispatch, getState) => {
+    dispatch(messageAdd(chatId, message));
+    if (message.author !== 'BOT') {
+      const botMessag = 'i am bot';
+      setTimeout(() => dispatch(messageAdd(chatId, botMessag)), 2000);
+    }
+  };
+  
+  const onAddMessage = useCallback((message) => {
+    dispatch(addMessageWithThunk(chatId, message));[chatId, dispatch]
+  });
+
 
     return (
         <div className='frag'>
@@ -70,7 +87,7 @@ export default function Chat () {
         <div className='listChat'>
           <input type='text' key={chatId} value={nameChat} onChange={ handleChangeNameChat }/>
             <button  onClick={chatAdd} >Add chat</button>
-            <button onClick={chatRemove}>Remove chat</button>
+            <button onClick={chatRemove(chatId)}>Remove chat</button>
         </div>
 
         <div className='listMessage'>
