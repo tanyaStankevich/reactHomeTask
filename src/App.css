@@ -29,3 +29,11 @@ a {
   color: white;
   text-decoration: none;
 }
+.listMessage {
+  display: flex;
+  flex-direction: column;
+}
+.listChat {
+  display: flex;
+  flex-direction: column;
+}

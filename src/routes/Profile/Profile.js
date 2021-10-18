@@ -1,14 +1,16 @@
 import React, { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { store } from "../../store/index";
+
 import { changeName } from '../../store/profile/actions'
 
 export default function Profile() {
   
   
-  const action = useSelector((state) => {
-    return state;
-  });
+  // const action = useSelector((state) => {
+  //   return state;
+  // });
+
+    const {nameProfile} = useSelector((state) => state.profile);
   
 
   const dispatch = useDispatch();

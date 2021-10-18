@@ -8,6 +8,7 @@ export default function Header () {
         <Link to='/'>Home</Link>
         <Link to='/Profile.js'>Profile</Link>
             <Link to='/Chat.js'>Chat</Link>
+            <Link to='/Gists.js'>Gist</Link>
             </div>
     )
 }

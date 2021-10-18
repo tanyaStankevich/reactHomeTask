@@ -1,9 +1,10 @@
 import { ProfileReducer } from "./profile/reducer";
-
-import thunk from 'redux-thunk';
-import { applyMiddleware, combineReducers } from "redux";
 import { ChatReducer } from "./chat/reducerChat";
 import { MessageReducer } from "./messages/reducerMessage";
+
+import thunk from 'redux-thunk';
+import { applyMiddleware, combineReducers, createStore, compose } from "redux";
+
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

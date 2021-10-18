@@ -28,7 +28,7 @@ export default function App() {
     <BrowserRouter>
       <Header />
       <Router />
-      <Chat />
+      {/* <Chat /> */}
       </BrowserRouter>
     
   );

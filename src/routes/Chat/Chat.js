@@ -2,10 +2,11 @@ import React from "react";
 import { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 import Message from '../../Message.js';
-import { getChat } from "../../store/chat/selectorChat.js";
-import { store } from "../../store/index.js";
-import { getMessages } from "../../store/messages/selectorMessage.js";
+import { getChatList } from "../../store/chat/selectorChat.js";
+
+import { getMessageList} from "../../store/messages/selectorMessage.js";
 import { nanoid } from 'nanoid';
+import { store } from "../../store/index.js";
 
 const messageText = 'Have a nice chat';
 
@@ -17,7 +18,8 @@ export default function Chat (props) {
   // });
  
   const dispatch = useDispatch();
-  const [chatId, setChatId] = useState('');
+  let chatId = 0;
+  const [chatIdDel, setChatIdDel] = useState(''); 
   const [author, setAuthor] = useState('');
   const [message, setMessage] = useState('');
   const [nameChat, setNameChat] = useState('');
@@ -26,11 +28,12 @@ export default function Chat (props) {
   const resetMessage = () => setMessage('');
   const resetNameChat = () => setNameChat('');
   
-  const chats = getChat;
-  const messages = getMessages;
+  const chats = getChatList(store);
+  const messages = getMessageList(store);
 
   const handleChangeAuthor = useCallback((e) => {
-      setAuthor(e.target.value);
+      
+    setAuthor(e.target.value);
   }, []);
 
   const handleChangeMessage = useCallback((e) => {
@@ -42,37 +45,37 @@ export default function Chat (props) {
     
   }, []);
 
-
-  const chatAdd = useCallback((nameChat) => {
+  const handleChangeChatId = useCallback((e) => {
+    setChatIdDel(e.target.value);
     
-    dispatch(chatAdd(nameChat))
-  }, [dispatch, nameChat],
-     resetNameChat()
+  }, []);
+
+
+  const chatAdd = useCallback((chatId, nameChat) => {
+    // chatId++;
+    dispatch(chatAdd(chatId, nameChat))
+  }, [dispatch,chatId, nameChat],
+     
+    //  resetNameChat()
   );
 
-  const chatRemove = useCallback(() => {
-    dispatch(chatRemove(chatId))
-  }, [dispatch, chatId],
+  const chatRemove = useCallback((chatIdDel) => {
+    dispatch(chatRemove(chatIdDel))
+  }, [dispatch, chatIdDel],
   
   );
   
-   const messageAdd = useCallback(() => {
-    dispatch(messageAdd(message, author))
-  }, [dispatch, message, author],
-  resetAuthor(), resetMessage(),
+   const messageAdd = useCallback((chatId, message) => {
+    dispatch(messageAdd(chatId, message))
+  }, [dispatch,author,message],
+  // resetAuthor(), resetMessage(),
   );
   
-  const addMessageWithThunk = (chatID, message) => (dispatch, getState) => {
-    dispatch(messageAdd(chatId, message));
-    if (message.author !== 'BOT') {
-      const botMessag = 'i am bot';
-      setTimeout(() => dispatch(messageAdd(chatId, botMessag)), 2000);
-    }
-  };
   
-  const onAddMessage = useCallback((message) => {
-    dispatch(addMessageWithThunk(chatId, message));[chatId, dispatch]
-  });
+  
+  // const onAddMessage = useCallback((message) => {
+  //   dispatch(addMessageWithThunk(chatId, message)),[dispatch, chatId]
+  // });
 
 
     return (
@@ -85,18 +88,39 @@ export default function Chat (props) {
         <h3 className='app'>Welcome to myMessanger</h3>
 
         <div className='listChat'>
-          <input type='text' key={chatId} value={nameChat} onChange={ handleChangeNameChat }/>
-            <button  onClick={chatAdd} >Add chat</button>
-            <button onClick={chatRemove(chatId)}>Remove chat</button>
+          Введите название чата для добавления
+          <input type='text' value={nameChat} onChange={handleChangeNameChat} />
+          <button  onClick={chatAdd} >Add chat</button>
+          <br/>
+          Введите id чата для удаления
+           <input type='text' value={chatIdDel} onChange={handleChangeChatId} />
+            
+          <button onClick={chatRemove}>Remove chat</button>
+          <ul>
+            {
+              chats.map(({ nameChat }) => <li key={chatId}>{chatId }{ nameChat}</li> )
+            }
+            
+          </ul>
         </div>
 
         <div className='listMessage'>
-          <input type='text' value={author} onChange={ handleChangeAuthor }/>
+          <p>Имя отправителя </p>
+          <input type='text' value={author} onChange={handleChangeAuthor} />
+           <p> Ваше сообщение </p>
           <input type='text' value={message} onChange={handleChangeMessage}/>
             <button onClick={messageAdd}>Send</button>
+            <ul>
+            {
+              messages.map(({ id, message, author }) => <li key={id}>{id}{author}{message}</li> )
+            }
             
+          </ul>
         </div>
-
+        
+        <div>
+          
+      </div>
           {/* <MessageChat author={author} messageAuthor={messageAuthor} /> */}
         
         

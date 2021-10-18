@@ -1,15 +1,16 @@
 export const CHAT_ADD = "CHATS::CHAT_ADD";
 export const CHAT_REMOVE = "CHATS::CHAT_REMOVE";
 
-export const chatAdd =(nameChat)=> ({
+export const chatAdd =(chatId, nameChat)=> ({
   type: CHAT_ADD,
   payload: 
-    nameChat,
+    chatId,
+    nameChat
   
 })
 
-export const chatRemove =(chatId)=>( {
+export const chatRemove =(chatIdDel)=>( {
   type: CHAT_REMOVE,
-  payload: chatId
+  payload: chatIdDel
 })
 

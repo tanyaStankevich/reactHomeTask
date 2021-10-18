@@ -5,7 +5,7 @@ export const CHANGE_NAME = "PROFILE_ACTION::CHANGE_NAME";
 //   type: PROFILE_ACTION
 // }
 
-export const changeName = (nameChat) => ({
+export const changeName = (nameProfile) => ({
   type: CHANGE_NAME,
-  payload: nameChat,
+  payload: nameProfile,
 });

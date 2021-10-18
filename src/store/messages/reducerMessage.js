@@ -1,10 +1,19 @@
 import { MESSAGE_ADD } from "./actionsMessage";
 
 export const initialState = {
-    //{[chatId]: [{id, text, author}]}
+    //{[chatId]: [{id, message, author}]}
 
     messageList:{},
 };
+
+// const addMessageWithThunk = (chatID, message) => (dispatch, getState) => {
+//     // dispatch(messageAdd(chatId, message));
+//     // if (message.author !== 'BOT') {
+//     //   const botMessag = 'i am bot';
+//     //   setTimeout(() => dispatch(messageAdd(chatId, botMessag)), 2000);
+//     // }
+//   };
+
 export const MessageReducer = (state = initialState, action) => {
     switch (action.type) {
         

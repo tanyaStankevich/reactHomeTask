@@ -5,16 +5,20 @@ export const initialStateChat = {
     chatList: []
 };
 
-
+let chatId = 0;
 export const ChatReducer = (state = initialStateChat, action) => {
     switch (action.type) {
         case CHAT_ADD: {
             // const { chatId, nameChat } = action.payload;
+            
             return {
-                               
+             ...state,                  
                 chatList: [...state.chatList,
-                    
-                        action.payload,
+                    {
+                        chatId: chatId++,
+                        nameChat: action.nameChat
+                    }
+                        
                     ]
                
             }
@@ -22,7 +26,7 @@ export const ChatReducer = (state = initialStateChat, action) => {
         };
         case CHAT_REMOVE: {
             return {
-                chatList: state.chatList.filter(({id})=>id!=action.payload)
+                chatList: state.chatList.filter(({id})=>id!=action.chatId)
                     
                 
             }
